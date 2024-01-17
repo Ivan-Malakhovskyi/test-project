@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Ivan-Malakhovskyi/test-project/static/css/main.7acaea2f.css",
+    "main.js": "/Ivan-Malakhovskyi/test-project/static/js/main.e64006c2.js",
+    "index.html": "/Ivan-Malakhovskyi/test-project/index.html",
+    "main.7acaea2f.css.map": "/Ivan-Malakhovskyi/test-project/static/css/main.7acaea2f.css.map",
+    "main.e64006c2.js.map": "/Ivan-Malakhovskyi/test-project/static/js/main.e64006c2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.e64006c2.js"
+  ]
+}
