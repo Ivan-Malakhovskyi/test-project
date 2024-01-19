@@ -10,8 +10,10 @@ import { store } from 'components/redux/store';
 const theme = {
   colors: {
     mainBgColor: '#ffffff',
-    primaryBgColor: '#3470FF',
-    primaryActiveBgColor: '#0B44CD',
+    mainBlackColor: ' #121417',
+    primaryBlueColor: '#3470FF',
+    addBlueColor: '#0B44CD',
+    addBgColor: 'rgba(18, 20, 23, 0.50)',
   },
 
   shadows: {
@@ -22,12 +24,12 @@ const theme = {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/test-project">
-      <Provider store={store}>
+    <Provider store={store}>
+      <BrowserRouter basename="/test-project">
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
-      </Provider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

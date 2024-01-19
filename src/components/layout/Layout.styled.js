@@ -31,7 +31,7 @@ export const StyledLink = styled(NavLink)`
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &.active {
-    color: 'black';
-    background-color: orangered;
+    color: ${({ theme: { colors } }) => colors.mainBlackColor};
+    background-color: ${({ theme: { colors } }) => colors.primaryBlueColor};
   }
 `;

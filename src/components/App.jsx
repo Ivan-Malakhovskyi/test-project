@@ -2,8 +2,8 @@ import { GlobalStyle } from 'GlobalStyle';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './layout/Layout';
 import { Home } from './pages/Home/Home';
-import { Catalog } from './pages/Catalog';
-import { Favorite } from './pages/Favorite';
+import { Catalog } from './pages/Catalog/Catalog';
+import { Favorite } from './pages/Favorite/Favorite';
 
 export const App = () => {
   return (
