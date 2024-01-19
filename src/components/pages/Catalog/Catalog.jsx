@@ -10,7 +10,15 @@ import {
   AdvertItem,
   AdvertList,
   ButtonAdd,
+  Container,
+  LearnMoreBtn,
+  Line,
+  ListInfoItem,
+  LoadMoreBtn,
+  Model,
   Topic,
+  TopicMake,
+  Wrapper,
 } from './Catalog.styled';
 
 export const Catalog = () => {
@@ -61,35 +69,63 @@ export const Catalog = () => {
             rentalCompany,
             type,
             mileage,
+            accessories,
             functionalities,
-          }) => (
-            <AdvertItem key={id}>
-              <AdvertImage
-                src={img || photoLink}
-                alt={make}
-                width={401}
-                height={268}
-              />
-              <ButtonAdd type="button">
-                <HeartIcon width={18} height={18} />
-              </ButtonAdd>
-              <h4>
-                {make} : {model}
-              </h4>{' '}
-              : {year}
-              <span>{rentalPrice}</span>
-              <p>{address}</p>
-              <button type="button" onClick={handleModalOpen}>
-                Learn more
-              </button>
-            </AdvertItem>
-          )
+          }) => {
+            const trimedString = address.split(',')[1]?.trim();
+
+            return (
+              <AdvertItem key={id}>
+                <AdvertImage
+                  src={img || photoLink}
+                  alt={make}
+                  width={401}
+                  height={268}
+                />
+                <ButtonAdd type="button">
+                  <HeartIcon width={18} height={18} />
+                </ButtonAdd>
+                <div>
+                  {' '}
+                  <Container>
+                    {' '}
+                    <TopicMake>
+                      {make} <Model>{model}</Model> {year}{' '}
+                    </TopicMake>
+                    <TopicMake>{rentalPrice}</TopicMake>
+                  </Container>
+                  <Wrapper>
+                    <ListInfoItem>
+                      {' '}
+                      {trimedString} <Line />
+                    </ListInfoItem>
+                    <ListInfoItem>
+                      {rentalCompany} <Line />
+                    </ListInfoItem>
+                    <ListInfoItem>
+                      {type} <Line />
+                    </ListInfoItem>
+                    <ListInfoItem>
+                      {model} <Line />
+                    </ListInfoItem>
+                    <ListInfoItem>
+                      {mileage} <Line />
+                    </ListInfoItem>
+                    <ListInfoItem>{accessories[2]}</ListInfoItem>
+                  </Wrapper>
+                  <LearnMoreBtn type="button" onClick={handleModalOpen}>
+                    Learn more
+                  </LearnMoreBtn>
+                </div>
+              </AdvertItem>
+            );
+          }
         )}
       </AdvertList>
 
-      <button type="button" onClick={handleLoadMore}>
+      <LoadMoreBtn type="button" onClick={handleLoadMore}>
         Load more
-      </button>
+      </LoadMoreBtn>
 
       {selectedCar && <Modal car={selectedCar} close={handleModalClose} />}
     </>
