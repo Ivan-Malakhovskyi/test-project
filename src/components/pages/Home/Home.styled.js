@@ -22,7 +22,3 @@ export const Paragraph = styled.p`
   font-weight: 500;
   line-height: 24px;
 `;
-
-export const List = styled.ul``;
-
-export const ListItem = styled.li``;
