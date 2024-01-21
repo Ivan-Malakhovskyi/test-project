@@ -1,7 +1,6 @@
 import { AdvertItem } from '../Catalog.styled';
 import { CatalogAdvertModal } from '../CatalogAdvertModal/CatalogAdvertModal';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAdverts } from 'components/redux/advert/selectors';
+import { useDispatch } from 'react-redux';
 
 import {
   AdvertImage,
@@ -17,13 +16,12 @@ import {
 
 import { useState } from 'react';
 
-import { addAdvert, deleteAdvert } from 'components/redux/advert/advert-slice';
+import { addAdvert } from 'components/redux/advert/advert-slice';
 import toast from 'react-hot-toast';
 import { Heart } from './CatalogAdvertList.styled';
 
 export const CatalogAdvertList = ({ car }) => {
   const {
-    id,
     img,
     photoLink,
     make,
@@ -40,7 +38,7 @@ export const CatalogAdvertList = ({ car }) => {
 
   const dispatch = useDispatch();
 
-  const favorites = useSelector(selectAdverts);
+  // const favorites = useSelector(selectAdverts);
 
   const trimedString = address.split(',');
 
@@ -59,15 +57,11 @@ export const CatalogAdvertList = ({ car }) => {
     setSelectedCar(true);
   };
 
-  const elementIsInAdverts = id => favorites.some(el => el.id === id);
+  // const elementIsInAdverts = id => favorites.some(el => el.id === id);
 
   const handleAddAdverts = () => {
-    if (elementIsInAdverts(id)) {
-      dispatch(deleteAdvert(car.id));
-    } else {
-      dispatch(addAdvert(car));
-      toast.success('Adverts was addes to favorite');
-    }
+    dispatch(addAdvert(car));
+    toast.success('Adverts was addes to favorite');
   };
 
   return (
