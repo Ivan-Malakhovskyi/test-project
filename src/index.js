@@ -5,15 +5,20 @@ import './index.css';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from 'components/redux/store';
+import { persistor, store } from 'components/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const theme = {
   colors: {
     mainBgColor: '#ffffff',
     mainBlackColor: ' #121417',
+    addGreyBgColor: '#F7F7FB',
+    addBlackColor: '#363535',
+    mainGreyColor: '#8A8A89',
     primaryBlueColor: '#3470FF',
     addBlueColor: '#0B44CD',
     addBgColor: 'rgba(18, 20, 23, 0.50)',
+    addWhiteColor: '#F9F9F9',
   },
 
   shadows: {
@@ -25,11 +30,13 @@ const theme = {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/test-project">
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter basename="/test-project">
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Paragraph, Title } from './Home.styled';
+import car from '../../images/img.jpg';
 
 export const Home = () => {
   return (
@@ -13,6 +14,8 @@ export const Home = () => {
         <li>Car rental</li>
         <li>Insurance plans and service packages available</li>
       </ul>
+
+      <img src={car} alt="rental car company" />
     </Container>
   );
 };

@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { BaseContainer } from './Layout.styled';
-import { AppHeader } from 'components/UserPages/AppHeader';
+import { AppHeader } from 'components/Header/AppHeader';
 import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {

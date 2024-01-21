@@ -12,7 +12,6 @@ img {
   max-width: 100%;
   object-fit: cover; 
   height: auto;
-  margin: 0 auto;
 }
 
 ul,li,h1, h2, h3, h4, h5, h6, p {

@@ -115,8 +115,6 @@ export const LoadMoreBtn = styled.button`
   display: flex;
   margin: 0 auto;
   padding-bottom: 150px;
-  color: ${({ theme: { colors } }) => colors.primaryBlueColor};
-  font-family: Manrope;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;

@@ -13,7 +13,7 @@ export const AppHeader = () => {
           <StyledLink to="/catalog">Catalog</StyledLink>
         </li>
         <li>
-          <StyledLink to="/favorites">Favoirtes</StyledLink>
+          <StyledLink to="/favorites">Favorites</StyledLink>
         </li>
       </Nav>
     </Header>

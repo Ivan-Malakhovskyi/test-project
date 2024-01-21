@@ -1,45 +1,27 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAdverts, selectPage } from 'components/redux/advert/selectors';
-import { ReactComponent as HeartIcon } from '../../images/heart.svg';
 import { animateScroll as scroll } from 'react-scroll';
 import { serviceAdverts } from 'components/redux/advert/advert-operations';
-import { Modal } from './Modal';
+import { AdvertList, LoadMoreBtn } from './Catalog.styled';
+import { CatalogAdvertList } from './CatalogAdvertList/CatalogAdvertList';
 import {
-  AdvertImage,
-  AdvertItem,
-  AdvertList,
-  ButtonAdd,
-  Container,
-  LearnMoreBtn,
-  Line,
-  ListInfoItem,
-  LoadMoreBtn,
-  Model,
-  Topic,
-  TopicMake,
-  Wrapper,
-} from './Catalog.styled';
+  selectAdverts,
+  selectIsLoading,
+} from 'components/redux/advert/selectors';
+import toast, { Toaster } from 'react-hot-toast';
+import { Loader } from 'components/loader/Loader';
+import { Filters } from './Filters/Filters';
 
 export const Catalog = () => {
-  const cars = useSelector(selectAdverts);
-
-  const page = useSelector(selectPage);
-
+  const [page, setPage] = useState(1);
+  const [isLastPage, setIsLastPage] = useState(false);
   const dispatch = useDispatch();
 
-  const [selectedCar, setSelectedCar] = useState(false);
-
-  const handleModalClose = () => {
-    setSelectedCar(false);
-  };
-
-  const handleModalOpen = () => {
-    setSelectedCar(true);
-  };
+  const cars = useSelector(selectAdverts);
+  const loading = useSelector(selectIsLoading);
 
   const handleLoadMore = () => {
-    dispatch(serviceAdverts({ page: page + 1 }));
+    setPage(page + 1);
 
     scroll.scrollToBottom(268 * 2, {
       duration: 250,
@@ -48,86 +30,35 @@ export const Catalog = () => {
   };
 
   useEffect(() => {
-    dispatch(serviceAdverts({ page: 1, limit: 12 }));
-  }, [dispatch]);
+    dispatch(serviceAdverts({ page, limit: 12 }));
+  }, [dispatch, page]);
+
+  useEffect(() => {
+    if (cars.length % 12 !== 0) {
+      setIsLastPage(true);
+      toast.success('You have reached the end of the list of images found');
+    }
+  }, [cars]);
 
   return (
     <>
-      <Topic>Catalog</Topic>
+      {loading && <Loader />}
+
+      <Filters />
 
       <AdvertList>
-        {cars.map(
-          ({
-            id,
-            img,
-            photoLink,
-            make,
-            model,
-            year,
-            rentalPrice,
-            address,
-            rentalCompany,
-            type,
-            mileage,
-            accessories,
-            functionalities,
-          }) => {
-            const trimedString = address.split(',')[1]?.trim();
-
-            return (
-              <AdvertItem key={id}>
-                <AdvertImage
-                  src={img || photoLink}
-                  alt={make}
-                  width={401}
-                  height={268}
-                />
-                <ButtonAdd type="button">
-                  <HeartIcon width={18} height={18} />
-                </ButtonAdd>
-                <div>
-                  {' '}
-                  <Container>
-                    {' '}
-                    <TopicMake>
-                      {make} <Model>{model}</Model> {year}{' '}
-                    </TopicMake>
-                    <TopicMake>{rentalPrice}</TopicMake>
-                  </Container>
-                  <Wrapper>
-                    <ListInfoItem>
-                      {' '}
-                      {trimedString} <Line />
-                    </ListInfoItem>
-                    <ListInfoItem>
-                      {rentalCompany} <Line />
-                    </ListInfoItem>
-                    <ListInfoItem>
-                      {type} <Line />
-                    </ListInfoItem>
-                    <ListInfoItem>
-                      {model} <Line />
-                    </ListInfoItem>
-                    <ListInfoItem>
-                      {mileage} <Line />
-                    </ListInfoItem>
-                    <ListInfoItem>{accessories[2]}</ListInfoItem>
-                  </Wrapper>
-                  <LearnMoreBtn type="button" onClick={handleModalOpen}>
-                    Learn more
-                  </LearnMoreBtn>
-                </div>
-              </AdvertItem>
-            );
-          }
-        )}
+        {cars.map(car => (
+          <CatalogAdvertList key={car.id} car={car} />
+        ))}
       </AdvertList>
 
-      <LoadMoreBtn type="button" onClick={handleLoadMore}>
-        Load more
-      </LoadMoreBtn>
+      {!isLastPage && cars.length > 0 && (
+        <LoadMoreBtn type="button" onClick={handleLoadMore}>
+          Load more
+        </LoadMoreBtn>
+      )}
 
-      {selectedCar && <Modal car={selectedCar} close={handleModalClose} />}
+      <Toaster />
     </>
   );
 };
