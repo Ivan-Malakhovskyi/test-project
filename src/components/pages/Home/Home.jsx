@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Paragraph, Title, Wrapper } from './Home.styled';
+import { Container, Paragraph, Title } from './Home.styled';
 import car from '../../images/img.jpg';
 
 export const Home = () => {
