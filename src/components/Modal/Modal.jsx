@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BackDrop, ButtonClose, Container, ModalContent } from './Modal.styled';
+import { BackDrop, ButtonClose, ModalContent } from './Modal.styled';
 import iconClose from '../images/x.svg';
 import { createPortal } from 'react-dom';
 
