@@ -15,6 +15,7 @@ export const Topic = styled.h1`
 export const AdvertList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  margin: 0 auto;
   column-gap: 29px;
   row-gap: 50px;
   padding-bottom: 100px;
@@ -48,7 +49,6 @@ export const ButtonAdd = styled.button`
   border: none;
   cursor: pointer;
   outline: none;
-  //   z-index: 1;
 `;
 
 export const TopicMake = styled.h3`
@@ -114,6 +114,7 @@ export const LearnMoreBtn = styled.button`
 export const LoadMoreBtn = styled.button`
   display: flex;
   margin: 0 auto;
+  color: ${({ theme: { colors } }) => colors.primaryBlueColor};
   padding-bottom: 150px;
   font-size: 16px;
   font-weight: 500;

@@ -19,9 +19,11 @@ import { useState } from 'react';
 import { addAdvert } from 'components/redux/advert/advert-slice';
 import toast from 'react-hot-toast';
 import { Heart } from './CatalogAdvertList.styled';
+// import { selectAdverts } from 'components/redux/advert/selectors';
 
 export const CatalogAdvertList = ({ car }) => {
   const {
+    // id,
     img,
     photoLink,
     make,
@@ -47,8 +49,6 @@ export const CatalogAdvertList = ({ car }) => {
 
   const [selectedCar, setSelectedCar] = useState(false);
 
-  // const [favorite, setFavorite] = useState([]);
-
   const handleModalClose = () => {
     setSelectedCar(false);
   };
@@ -57,11 +57,9 @@ export const CatalogAdvertList = ({ car }) => {
     setSelectedCar(true);
   };
 
-  // const elementIsInAdverts = id => favorites.some(el => el.id === id);
-
   const handleAddAdverts = () => {
     dispatch(addAdvert(car));
-    toast.success('Adverts was addes to favorite');
+    toast.success('Adverts was added');
   };
 
   return (

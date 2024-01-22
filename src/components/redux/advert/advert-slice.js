@@ -5,6 +5,7 @@ const initialState = {
   cars: [],
   favorites: [],
   isLoading: false,
+  isFavorite: false,
   isError: null,
 };
 

@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 
 export const ModalContent = styled.div`
-  @media screen and (min-width: 768px) {
-    width: 460px;
-  }
+  width: 460px;
 `;
 
 export const ModalImage = styled.img`
-  // width: 461px;
-  height: auto;
   border-radius: 14px;
   margin-bottom: 14px;
-  margin-top: 20px;
 `;
 
 export const WrapperModalInfo = styled.div`

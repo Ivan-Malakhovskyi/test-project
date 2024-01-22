@@ -38,7 +38,6 @@ export const CatalogAdvertModal = ({ info, close }) => {
   } = info;
 
   const splittedRental = rentalConditions.split('\n');
-  console.log(splittedRental);
 
   const formattedMieage = mileage
     .toString()

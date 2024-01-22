@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 
 body {
+ 
     font-family: "Manrope", sans-serif;
     background-color: ${({ theme: { colors } }) => colors.mainBgColor};
 }
@@ -12,6 +13,7 @@ img {
   max-width: 100%;
   object-fit: cover; 
   height: auto;
+  
 }
 
 ul,li,h1, h2, h3, h4, h5, h6, p {
