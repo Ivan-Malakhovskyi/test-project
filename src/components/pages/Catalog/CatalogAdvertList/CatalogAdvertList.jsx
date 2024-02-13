@@ -1,6 +1,6 @@
 import { AdvertItem } from '../Catalog.styled';
 import { CatalogAdvertModal } from '../CatalogAdvertModal/CatalogAdvertModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   AdvertImage,
@@ -16,14 +16,15 @@ import {
 
 import { useState } from 'react';
 
-import { addAdvert } from 'components/redux/advert/advert-slice';
+import { addAdvert, deleteAdvert } from 'components/redux/advert/advert-slice';
 import toast from 'react-hot-toast';
-import { Heart } from './CatalogAdvertList.styled';
-// import { selectAdverts } from 'components/redux/advert/selectors';
+import { NormalHeart } from './CatalogAdvertList.styled';
+import { ActiveHeart } from './CatalogAdvertList.styled';
+import { selectFavoritesAdverts } from 'components/redux/advert/selectors';
 
 export const CatalogAdvertList = ({ car }) => {
   const {
-    // id,
+    id,
     img,
     photoLink,
     make,
@@ -40,7 +41,7 @@ export const CatalogAdvertList = ({ car }) => {
 
   const dispatch = useDispatch();
 
-  // const favorites = useSelector(selectAdverts);
+  const favorites = useSelector(selectFavoritesAdverts);
 
   const trimedString = address.split(',');
 
@@ -52,22 +53,28 @@ export const CatalogAdvertList = ({ car }) => {
   const handleModalClose = () => {
     setSelectedCar(false);
   };
+  const isFavoriteCar = id => favorites.some(car => car.id === id);
+
+  const handleToggle = () => {
+    if (isFavoriteCar(id)) {
+      dispatch(deleteAdvert(car.id));
+      toast.success('Advert was deleted from favorites 🗑');
+    } else {
+      dispatch(addAdvert(car));
+      toast.success('Advert was added 👌');
+    }
+  };
 
   const handleModalOpen = () => {
     setSelectedCar(true);
-  };
-
-  const handleAddAdverts = () => {
-    dispatch(addAdvert(car));
-    toast.success('Adverts was added');
   };
 
   return (
     <>
       <AdvertItem>
         <AdvertImage src={img || photoLink} alt={make} />
-        <ButtonAdd type="button" onClick={handleAddAdverts}>
-          <Heart width={18} height={18} />
+        <ButtonAdd type="button" onClick={handleToggle}>
+          {isFavoriteCar(id) ? <ActiveHeart /> : <NormalHeart />}
         </ButtonAdd>{' '}
         <Container>
           {' '}

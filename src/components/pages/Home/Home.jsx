@@ -17,7 +17,7 @@ export const Home = () => {
         </ul>
       </Container>
 
-      <div style={{ marginTop: '50px' }}>
+      <div style={{ marginTop: '30px' }}>
         <img src={car} alt="rental car company" />
       </div>
     </>

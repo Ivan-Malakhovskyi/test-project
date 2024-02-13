@@ -14,6 +14,7 @@ export const Topic = styled.h1`
 
 export const AdvertList = styled.ul`
   display: flex;
+  padding: 0 15px;
   flex-wrap: wrap;
   margin: 0 auto;
   column-gap: 29px;

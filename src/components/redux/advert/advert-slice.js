@@ -21,7 +21,7 @@ const advertsSlice = createSlice({
     deleteAdvert: {
       reducer(state, action) {
         state.favorites = state.favorites.filter(
-          car => car.id !== action.payload.id
+          car => car.id !== action.payload
         );
       },
     },
