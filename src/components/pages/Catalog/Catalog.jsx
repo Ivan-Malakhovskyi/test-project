@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { animateScroll as scroll } from 'react-scroll';
 import { serviceAdverts } from 'components/redux/advert/advert-operations';
@@ -17,8 +17,29 @@ export const Catalog = () => {
   const [isLastPage, setIsLastPage] = useState(false);
   const dispatch = useDispatch();
 
+  const abortControllerRef = useRef();
+
   const cars = useSelector(selectAdverts);
   const loading = useSelector(selectIsLoading);
+
+  useEffect(() => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    abortControllerRef.current = new AbortController();
+    const signal = abortControllerRef.current.signal;
+
+    dispatch(
+      serviceAdverts({
+        page,
+        limit: 12,
+        signal,
+      })
+    );
+
+    return () => abortControllerRef.current.abort();
+  }, [dispatch, page]);
 
   const handleLoadMore = () => {
     setPage(page + 1);
@@ -28,10 +49,6 @@ export const Catalog = () => {
       smooth: 'easeInOutQuint',
     });
   };
-
-  useEffect(() => {
-    dispatch(serviceAdverts({ page, limit: 12 }));
-  }, [dispatch, page]);
 
   useEffect(() => {
     if (cars.length % 12 !== 0) {
