@@ -1,17 +1,18 @@
 {
   "files": {
     "main.css": "/test-project-rental-car/static/css/main.b8c86715.css",
-    "main.js": "/test-project-rental-car/static/js/main.734eb613.js",
+    "main.js": "/test-project-rental-car/static/js/main.05721d50.js",
     "static/media/img.jpg": "/test-project-rental-car/static/media/img.d0b064fcbbd2797477d0.jpg",
     "index.html": "/test-project-rental-car/index.html",
     "static/media/heart.svg": "/test-project-rental-car/static/media/heart.ac060e771360fcc26ebb0c86173c8396.svg",
+    "static/media/active_icon.svg": "/test-project-rental-car/static/media/active_icon.97847e9195943f61800c97807e735d4f.svg",
     "static/media/x.svg": "/test-project-rental-car/static/media/x.f3cbdd58dc25ca7cbb3d242106b56fb9.svg",
     "static/media/line.svg": "/test-project-rental-car/static/media/line.5dbce068a4e015f477e063ada8f4b6d7.svg",
     "main.b8c86715.css.map": "/test-project-rental-car/static/css/main.b8c86715.css.map",
-    "main.734eb613.js.map": "/test-project-rental-car/static/js/main.734eb613.js.map"
+    "main.05721d50.js.map": "/test-project-rental-car/static/js/main.05721d50.js.map"
   },
   "entrypoints": [
     "static/css/main.b8c86715.css",
-    "static/js/main.734eb613.js"
+    "static/js/main.05721d50.js"
   ]
 }
